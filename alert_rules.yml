@@ -7,5 +7,5 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "Java App is DOWN!"
+          summary: "APP down thwr p T-T"
           description: "The Spring Boot application has been down for more than 10 seconds."

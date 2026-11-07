@@ -2,10 +2,10 @@ global:
   resolve_timeout: 5m
 
 route:
-  receiver: 'discord'
+  receiver: 'discord-bridge'
 
 receivers:
-  - name: 'discord'
-    discord_configs:
-      - webhook_url: 'https://discord.com/api/webhooks/1568487271940890724/4OpEYN8qfy-CSDb_jSEEfEGKO45IGJUKMdQPg0BtZDY6GXs6yNjj6RYM4gif3FttLhuZ'
+  - name: 'discord-bridge'
+    webhook_configs:
+      - url: 'http://discord-bridge:9094'
         send_resolved: true

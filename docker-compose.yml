@@ -1,19 +1,31 @@
 services:
   prometheus:
     image: prom/prometheus:latest
-    network_mode: host
+    ports:
+      - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   alertmanager:
     image: prom/alertmanager:latest
-    network_mode: host
+    ports:
+      - "9093:9093"
     volumes:
       - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
 
+  discord-bridge:
+    image: benjojo/alertmanager-discord
+    ports:
+      - "9094:9094"
+    environment:
+      - DISCORD_WEBHOOK=${DISCORD_WEBHOOK}
+
   grafana:
     image: grafana/grafana:latest
-    network_mode: host
+    ports:
+      - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
