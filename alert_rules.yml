@@ -1,0 +1,11 @@
+groups:
+  - name: example
+    rules:
+      - alert: AppDown
+        expr: up{job="spring-boot-app"} == 0
+        for: 10s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Java App is DOWN!"
+          description: "The Spring Boot application has been down for more than 10 seconds."
